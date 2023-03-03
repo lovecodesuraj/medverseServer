@@ -21,7 +21,8 @@ export const getQuestions = async (req, res) => {
 export const addAnswer = async (req, res) => {
   const { id } = req.params;
   const { answer, creator } = req.body;
-  const userId=(creator.sub || creator._id);
+  // console.log(creator)
+  const userId=(creator?.sub || creator?._id);
   try {
     const question = await Question.findById(id);
     const response = await Question.findOneAndUpdate({ _id: id },
@@ -92,7 +93,7 @@ export const createQuestion = async (req, res) => {
     title: body.title,
     question: body.question,
     files: body.files,
-    creator: req.userId,
+    creator:body.creator,
     name: body.name,
     picture: body.picture,
     answers: [],

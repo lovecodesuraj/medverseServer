@@ -5,6 +5,7 @@ import mongoose from "mongoose"
 import questionsRoutes from "./routes/questions.js"
 import authRoutes from "./routes/users.js";
 
+
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -30,7 +31,7 @@ const PORT = process.env.PORT || 5000 ;
 
 mongoose.connect(process.env.CONNECTION_URL,{useNewUrlParser:true,useUnifiedTopology:true})
 .then(()=>{app.listen(PORT , ()=>{console.log(`sever is running at port ${PORT}`)})})
-.catch((err)=>{console.log(err)})
+.catch((err)=>{console.log(err)});
 
 // mongoose.set('useFindAndModify', false);
 // mongoose.set('strictQuery', true)

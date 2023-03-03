@@ -84,6 +84,7 @@ export const getUsersBySearch = async (req, res) => {
   try {
     const search = new RegExp(searchQuery, 'i');
     const users = await User.find({ $or: [{ email: search }, { name: search }] });
+    console.log(users.length);
     res.status(200).json(users);
   } catch (error) {
     //    res.json(404).json({message:"error.message"});
@@ -93,7 +94,7 @@ export const getUsersBySearch = async (req, res) => {
 
 export const getUsers = async (req, res) => {
   try {
-    const users = await User.find().limit(20);
+    const users = await User.find();
     res.status(200).json(users);
   } catch (error) {
     res.status(400).json({ message: error?.message });
