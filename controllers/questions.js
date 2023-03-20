@@ -8,7 +8,7 @@ export const getQuestions = async (req, res) => {
     const LIMIT = 8;
     const startIndex = (Number(page) - 1) * LIMIT;
     const total = await Question.countDocuments({});
-    const questions = await Question.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
+    const questions = await Question.find({},{files:0,"answers.files":0}).sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
     const numberOfPages = Math.ceil(total / LIMIT);
     // console.log(numberOfPages)
     res.status(200).json({ data: questions, currentPage: Number(page) || 1, numberOfPages });
